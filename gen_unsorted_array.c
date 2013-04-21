@@ -1,10 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <fcntl.h>
-
-#define NUM_ELTS 100
-#define MAX_ELT_VALUE 100
-#define FILENAME "unsorted_array.h"
+#include "main.h"
 
 int main()
 {
@@ -17,11 +14,7 @@ int main()
         exit(1);
     }
 
-    fprintf(file, "#ifndef __UNSORTED_ARRAY_H_\n");
-    fprintf(file, "#define __UNSORTED_ARRAY_H_\n");
-    fprintf(file, "\n");
-
-    fprintf(file, "int unsorted_array = [ ");
+    fprintf(file, "int g_unsorted_array[] = { ");
 
     srand(42);
 
@@ -29,9 +22,8 @@ int main()
         fprintf(file, "%d, ", (int)((float)rand() / RAND_MAX * MAX_ELT_VALUE));
     }
 
-    fprintf(file, "]\n\n");
+    fprintf(file, "};\n");
 
-    fprintf(file, "#endif /* __UNSORTED_ARRAY_H_ */\n");
     fclose(file);
 
     return 0;
