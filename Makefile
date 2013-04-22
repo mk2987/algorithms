@@ -6,7 +6,7 @@ CFILES 		:= ${UNSORTED_C} utils.c sort.c main.c
 BIN 		:= /tmp/sort
 CC 		:= clang
 ifdef DEBUG
-	CFLAGS	= -g
+CFLAGS	= -g
 endif
 
 .PHONY : run unsorted clean clobber

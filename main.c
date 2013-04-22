@@ -34,6 +34,11 @@ int main ()
     selectionSort(sortedArray, NUM_ELTS);
     check(sortedArray, NUM_ELTS);
 
+    fprintf(stderr, "Running Insertion Sort\n");
+    prepare(sortedArray, NUM_ELTS);
+    insertionSort(sortedArray, NUM_ELTS);
+    check(sortedArray, NUM_ELTS);
+
     fprintf(stderr, "====== EXITING ======\n");
 
     return 0;
