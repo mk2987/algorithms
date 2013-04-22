@@ -49,8 +49,9 @@ void selectionSort(int A[], int length)
     int min, loc;
 
     for (i = 0; i < length; i++) {
-        // In every iteration of the outer loop, the
-        // first i elements are considered to be sorted.
+        // During every iteration of the outer loop, the
+        // portion of the array to the left of element i
+        // are already sorted.
         min = A[i];
         loc = i;
 
