@@ -3,6 +3,7 @@
 #include "main.h"
 #include "utils.h"
 #include "sort.h"
+#include "tree.h"
 
 extern int UNSORTED_ARRAY[];
 
@@ -38,6 +39,10 @@ int main ()
     prepare(sortedArray, NUM_ELTS);
     insertionSort(sortedArray, NUM_ELTS);
     check(sortedArray, NUM_ELTS);
+
+    fprintf(stderr, "Creating Binary Search Tree\n");
+    prepare(sortedArray, NUM_ELTS);
+    binaryTree(sortedArray, NUM_ELTS);
 
     fprintf(stderr, "====== EXITING ======\n");
 

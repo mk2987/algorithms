@@ -1,8 +1,8 @@
 UNSORTED_C 	:= g_unsorted_array.c
 GEN_UNSORTED_C 	:= gen_unsorted_array.c
 GEN_UNSORTED	:= /tmp/gen_unsorted
-HFILES		:= utils.h main.h sort.h
-CFILES 		:= ${UNSORTED_C} utils.c sort.c main.c
+HFILES		:= utils.h main.h sort.h tree.h
+CFILES 		:= ${UNSORTED_C} utils.c sort.c main.c tree.c
 BIN 		:= /tmp/sort
 CC 		:= clang
 ifdef DEBUG
