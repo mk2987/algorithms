@@ -42,7 +42,7 @@ int main ()
 
     fprintf(stderr, "Creating Binary Search Tree\n");
     prepare(sortedArray, NUM_ELTS);
-    binaryTree(sortedArray, NUM_ELTS);
+    binaryTree(sortedArray, NUM_ELTS, "/tmp/bintree.dot");
 
     fprintf(stderr, "====== EXITING ======\n");
 
