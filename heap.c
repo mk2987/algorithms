@@ -29,7 +29,7 @@ static int rightChild(int position)
 // elements A[0..heapSize-1], where 0 <= heapSize <= length, are valid
 // elements of the heap.
 // O(lg n) worst case time.
-static void maxHeapify(int A[], int i, int heapSize)
+void maxHeapify(int A[], int i, int heapSize)
 {
     // Because the array A starts at 0.
     int left  = leftChild(i) + 1;

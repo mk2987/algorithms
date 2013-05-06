@@ -2,6 +2,7 @@
 #include <stdbool.h>
 #include "main.h"
 #include "utils.h"
+#include "heap.h"
 
 // Sorts in place, stable.
 // Best time is O(n) when array is already sorted
@@ -102,3 +103,25 @@ void insertionSort(int A[], int length)
     }
 }
 
+// Sorts in place, stable
+// Called heap sort because we first make a heap from the array
+// Worst case = O(nlogn)
+// Best case = Ω(n), O(nlogn)
+// Average case = O(nlogn)
+void heapSort(int A[], int length)
+{
+    int i;
+    int heapSize = length;
+
+    buildMaxHeap(A, length);
+
+    for (i = 0; i < length; i++) {
+        // The largest element has been moved to the end of
+        // the array, and the last element to the front.
+        swap(&A[0], &A[heapSize - 1]);
+        heapSize--;
+
+        // The new element may need to be adjusted
+        maxHeapify(A, 0, heapSize);
+    }
+}

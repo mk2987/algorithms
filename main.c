@@ -41,6 +41,11 @@ int main ()
     insertionSort(sortedArray, NUM_ELTS);
     check(sortedArray, NUM_ELTS);
 
+    fprintf(stderr, "Running Heap Sort\n");
+    prepare(sortedArray, NUM_ELTS);
+    heapSort(sortedArray, NUM_ELTS);
+    check(sortedArray, NUM_ELTS);
+
     fprintf(stderr, "Creating Binary Search Tree\n");
     prepare(sortedArray, NUM_ELTS);
     binaryTree(sortedArray, NUM_ELTS, stderr);
