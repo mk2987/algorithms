@@ -4,6 +4,7 @@
 #include "utils.h"
 #include "sort.h"
 #include "tree.h"
+#include "heap.h"
 
 extern int UNSORTED_ARRAY[];
 
@@ -42,7 +43,12 @@ int main ()
 
     fprintf(stderr, "Creating Binary Search Tree\n");
     prepare(sortedArray, NUM_ELTS);
-    binaryTree(sortedArray, NUM_ELTS, "/tmp/bintree.dot");
+    binaryTree(sortedArray, NUM_ELTS, stderr);
+
+    fprintf(stderr, "Creating Max Heap\n");
+    prepare(sortedArray, NUM_ELTS);
+    buildMaxHeap(sortedArray, NUM_ELTS);
+    printFlattenedTree(sortedArray, NUM_ELTS, stderr);
 
     fprintf(stderr, "====== EXITING ======\n");
 

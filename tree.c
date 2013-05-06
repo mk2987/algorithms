@@ -1,14 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include "utils.h"
 #include "tree.h"
-
-typedef struct BinaryTreeNode_st {
-    int data;
-    struct BinaryTreeNode_st *parent;
-    struct BinaryTreeNode_st *leftChild;
-    struct BinaryTreeNode_st *rightChild;
-} *BinaryTreeNode;
 
 // Takes O(n) time.
 static void breadthFirstTraverse(BinaryTreeNode head, FILE *file, bool printNodeOnly)
@@ -131,24 +125,13 @@ static void binaryTreeInsert (BinaryTreeNode *head, int data)
     }
 }
 
-//          Average   Worst case
-//  Space   O(n)      O(n)
-//  Search  O(lg n)   O(n)
-//  Insert  O(lg n)   O(n)
-//  Delete  O(lg n)   O(n)
-void binaryTree(int array[], int length, const char *fileName)
+void printTreeDigraph(BinaryTreeNode head, const char *fileName)
 {
-    int i;
-    BinaryTreeNode head = NULL;
     FILE *file = fopen(fileName, "w");
 
     if (file == NULL) {
         fprintf(stderr, "Failed to open temp dot file\n");
         return;
-    }
-
-    for (i = 0; i < length; i++) {
-        binaryTreeInsert(&head, array[i]);
     }
 
     fprintf(file, "digraph G {\n");
@@ -158,6 +141,23 @@ void binaryTree(int array[], int length, const char *fileName)
     fprintf(file, "}\n");
 
     fclose(file);
+}
+
+//          Average   Worst case
+//  Space   O(n)      O(n)
+//  Search  O(lg n)   O(n)
+//  Insert  O(lg n)   O(n)
+//  Delete  O(lg n)   O(n)
+void binaryTree(int array[], int length, FILE *file)
+{
+    int i;
+    BinaryTreeNode head = NULL;
+
+    for (i = 0; i < length; i++) {
+        binaryTreeInsert(&head, array[i]);
+    }
+
+    printTree(head, file);
 
     fprintf(stderr, "Depth first traversal: Pre Order\n");
     depthFirstTraversePreOrder(head, stderr);
