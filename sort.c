@@ -125,3 +125,46 @@ void heapSort(int A[], int length)
         maxHeapify(A, 0, heapSize);
     }
 }
+
+// Quicksort partitioning
+// Worst case: O(n) comparisions, O(n) swaps
+// when the array is already sorted, for in that case
+// each comparision will result in a swap with itself.
+static int partition(int A[], int p, int r)
+{
+    // x is the pivot element
+    int x = A[r];
+    int i = p - 1;
+    int j;
+
+    // Divide A[p..r] into two partitions, the first
+    // part has elements < x and the second has elements
+    // > x.
+    // First part A[p..i]
+    // Second part A[i+1..r]
+    for (j = p; j <= (r-1); j++) {
+        if (A[j] < x) {
+            i = i + 1;
+            swap(&A[i], &A[j]);
+        }
+    }
+    swap(&A[i+1], &A[r]);
+    return i+1;
+}
+
+// Sorts in place, stable
+// Worst case time O(n²)
+// Average case time O(nlogn)
+// Best case time O(nlogn)
+void quickSort(int A[], int p, int r)
+{
+    // q is the pivot
+    int q;
+
+    if (p < r) {
+        q = partition(A, p, r);
+        quickSort(A, p, q-1);
+        quickSort(A, q, r);
+    }
+}
+

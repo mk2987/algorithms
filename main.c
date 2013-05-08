@@ -53,6 +53,13 @@ int main ()
 
     fprintf(stderr, "======================\n");
 
+    fprintf(stderr, "Running Quick Sort\n");
+    prepare(sortedArray, NUM_ELTS);
+    quickSort(sortedArray, 0, NUM_ELTS-1);
+    check(sortedArray, NUM_ELTS);
+
+    fprintf(stderr, "======================\n");
+
     fprintf(stderr, "Running Heap Sort\n");
     prepare(sortedArray, NUM_ELTS);
     heapSort(sortedArray, NUM_ELTS);
