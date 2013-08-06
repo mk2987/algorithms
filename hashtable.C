@@ -75,15 +75,19 @@ template<typename T, typename K>
 void HashTable<T, K>::remove(T *record) {
     int hashIndex = record->getHashIndex(numBuckets); 
     Node **node = &table[hashIndex];
+    int i = 0;
 
     while (*node != NULL) {
         if ((*node)->record == record) {
+            cout << "Removing " << (*node)->record->getKey()
+                 << " from index " << hashIndex
+                 << " position " << i << endl;
             Node *tempNode = *node;
             *node = (*node)->next;
-            cout << "Removing record from index " << hashIndex << endl;
             delete tempNode;
             return;
         }
+        i++;
         node = &(*node)->next;
     }
     
@@ -107,18 +111,20 @@ void HashTable<T, K>::print() {
 
 template<typename T, typename K>
 T *HashTable<T, K>::find(K key) {
-    T tempRecord(key, NULL);
+    T tempRecord(key, "");
     int hashIndex = tempRecord.getHashIndex(numBuckets);
     Node **node = &table[hashIndex];
+    int i = 0;
 
     while (*node != NULL) {
         if ((*node)->record->getKey() == key) {
-            Node *tempNode = *node;
-            *node = (*node)->next;
-            cout << "Record found at index " << hashIndex << endl;
+            cout << (*node)->record->getKey()
+                 << " found at index " << hashIndex
+                 << " position " << i << endl;
             return (*node)->record;
         }
         node = &(*node)->next;
+        i++;
     }
     
     cout << "Record not found!\n";
@@ -165,15 +171,51 @@ int main() {
     Record r2("Maitreyi", "Santa Clara");
     Record r3("Noodloo", "Santa Clara");
     Record r4("Popu", "Santa Clara");
-    Record r5("Mishtee", "Santa Clara");
+    Record r5("Mishti", "Santa Clara");
     Record r6("Fuffin", "Santa Clara");
+
+    Record r11("1Mayank", "Santa Clara");
+    Record r22("2Maitreyi", "Santa Clara");
+    Record r33("3Noodloo", "Santa Clara");
+    Record r44("4Popu", "Santa Clara");
+    Record r55("5Mishti", "Santa Clara");
+    Record r66("6Fuffin", "Santa Clara");
+
     hashTable->insert(&r1);
     hashTable->insert(&r2);
     hashTable->insert(&r3);
     hashTable->insert(&r4);
     hashTable->insert(&r5);
     hashTable->insert(&r6);
-    hashTable->find("Mayank");
+
     hashTable->print();
+
+    hashTable->insert(&r11);
+    hashTable->insert(&r22);
+    hashTable->insert(&r33);
+    hashTable->insert(&r44);
+    hashTable->insert(&r55);
+    hashTable->insert(&r66);
+
+    hashTable->print();
+
+    hashTable->find("Mayank");
+    hashTable->find("Maitreyi");
+    hashTable->find("Noodloo");
+    hashTable->find("Popu");
+    hashTable->find("Mishti");
+    hashTable->find("Fuffin");
+
+    hashTable->remove(&r11);
+    hashTable->remove(&r22);
+    hashTable->remove(&r33);
+    hashTable->remove(&r44);
+    hashTable->remove(&r55);
+    hashTable->remove(&r66);
+
+    hashTable->print();
+
+    hashTable->insert(&r1);
+
     return 0;
 }
