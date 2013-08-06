@@ -9,7 +9,8 @@ HFILES		+= main.h
 HFILES		+= sort.h
 HFILES		+= tree.h
 HFILES		+= heap.h
-CFILES		+= pqueue.h
+HFILES		+= pqueue.h
+HFILES		+= hashtable.h
 
 CFILES 		:= ${UNSORTED_C}
 CFILES		+= utils.c
@@ -18,6 +19,7 @@ CFILES		+= main.c
 CFILES		+= tree.c
 CFILES		+= heap.c
 CFILES		+= pqueue.c
+CFILES		+= hashtable.c
 
 ifdef DEBUG
 CFLAGS	= -g

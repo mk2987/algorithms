@@ -67,6 +67,13 @@ int main ()
 
     fprintf(stderr, "======================\n");
 
+    fprintf(stderr, "Running Merge Sort\n");
+    prepare(sortedArray, NUM_ELTS);
+    mergeSort(sortedArray, tempArray, 0, NUM_ELTS-1);
+    check(sortedArray, NUM_ELTS);
+
+    fprintf(stderr, "======================\n");
+
     fprintf(stderr, "Creating Binary Search Tree\n");
     prepare(sortedArray, NUM_ELTS);
     binaryTree(sortedArray, NUM_ELTS, stderr);

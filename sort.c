@@ -168,3 +168,60 @@ void quickSort(int A[], int p, int r)
     }
 }
 
+// Takes O(n) extra space in B[]
+// For a version that does not take any extra space, store
+// the elements of the merged array in A[] itself, and the
+// displaced elements of A[] in the space vacated in B[].
+// The merge function assumes that the arrays A[p..q] and
+// A[q+1..r] are both sorted.
+static void merge(int A[], int B[], int p, int q, int r)
+{
+    int left = p;
+    int right = q + 1;
+    int i;
+
+    // This for loop alongwith the two while loops
+    // takes a total of O(n) time
+    // B[] is scratch space
+    for (i = p; (left <= q && right <= r); i++) {
+
+        // Figure out which element goes into B[] first
+        if (A[left] < A[right])
+            B[i] = A[left++];
+        else
+            B[i] = A[right++];
+    }
+
+    // Only one of these while loops will run
+    while(left <= q)
+        B[i++] = A[left++];
+
+    while(right <= r)
+        B[i++] = A[right++];
+
+    // This takes O(n) time again
+    for (i = p; i <= r; i++)
+        A[i] = B[i];
+}
+
+// Does NOT sort in place, stable
+// Takes O(n) additional space
+// Worst case time O(nlogn)
+// Best case time O(nlogn)
+// B[] is scratch space, as wide as A[]
+void mergeSort(int A[], int B[], int p, int r)
+{
+    // There need to be at least two elements
+    // left to require sorting.
+    if (p < r) {
+
+        // floor(p+r)/2
+        int q = (p + r)/2;
+
+        mergeSort(A, B, p, q);
+        mergeSort(A, B, q+1, r);
+
+        merge(A, B, p, q, r);
+    }
+}
+
